@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -376,88 +375,23 @@
   .footer-section {
     position: relative;
     z-index: 1;
-    padding: 6rem 3rem 2rem;
+    padding: 4rem 3rem 2rem;
     max-width: 1200px;
     margin: 0 auto;
   }
 
-  .footer-grid {
+  .footer-minimal {
     display: flex;
-    justify-content: space-between;
-    gap: 4rem;
+    justify-content: center;
+    margin-bottom: 3rem;
   }
-  .footer-cta h3 {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 1.1rem;
-    font-weight: 500;
-    margin-bottom: 0.6rem;
-  }
-  .footer-cta p {
-    font-size: 0.75rem;
-    color: var(--dim);
-    margin-bottom: 1.5rem;
-    max-width: 400px;
-    line-height: 1.6;
-  }
-
-  .footer-email-capture {
-    display: flex;
-    max-width: 380px;
-  }
-  .footer-email-capture input {
-    flex: 1;
-    min-width: 0;
-    background: rgba(255,255,255,0.05);
-    border: 1px solid var(--card-border);
-    border-right: none;
-    border-radius: 100px 0 0 100px;
-    padding: 0.7rem 1.2rem;
-    font-family: 'Space Mono', monospace;
-    font-size: 0.75rem;
-    color: var(--fg);
-    outline: none;
-    transition: border-color 0.3s ease;
-  }
-  .footer-email-capture input::placeholder { color: var(--dim); }
-  .footer-email-capture input:focus { border-color: var(--accent); }
-  .footer-email-capture button {
-    background: var(--fg);
-    border: 1px solid var(--fg);
-    border-radius: 0 100px 100px 0;
-    padding: 0.7rem 1.3rem;
-    font-family: 'Space Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--bg);
-    cursor: pointer;
-    transition: all 0.3s ease;
-    white-space: nowrap;
-  }
-  .footer-email-capture button:hover {
-    background: var(--accent);
-    border-color: var(--accent);
-  }
-  .footer-email-capture button:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-  }
-  .email-success {
-    display: none;
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 0.85rem;
-    color: var(--accent);
-    margin-top: 0.8rem;
-  }
-
-  .footer-links {
+  .footer-socials {
     display: flex;
     gap: 2rem;
     flex-wrap: wrap;
-    align-items: flex-start;
-    padding-top: 0.5rem;
+    justify-content: center;
   }
-  .footer-links a {
+  .footer-socials a {
     font-size: 0.7rem;
     letter-spacing: 0.15em;
     text-transform: uppercase;
@@ -465,7 +399,7 @@
     text-decoration: none;
     transition: color 0.3s ease;
   }
-  .footer-links a:hover { color: var(--accent); }
+  .footer-socials a:hover { color: var(--accent); }
 
   .copyright {
     margin-top: 6rem;
@@ -541,16 +475,14 @@
   @media (max-width: 768px) {
     .hero-section { padding: 2rem 1.5rem; }
     .about-section { padding: 4rem 1.5rem; }
-    .footer-section { padding: 4rem 1.5rem 2rem; }
+    .footer-section { padding: 2rem 1.5rem 2rem; }
+    .footer-socials { gap: 1.2rem; }
     .top-bar { padding: 1rem 1.5rem; }
     .about-grid {
       grid-template-columns: 1fr;
       gap: 2.5rem;
     }
     .about-photo { max-width: 280px; }
-    .footer-grid { flex-direction: column; }
-    .footer-email-capture { max-width: 100%; }
-    .footer-email-capture input { width: auto; }
     .socials { gap: 1.2rem; }
     .corner { display: none; }
     .scroll-hint { display: none; }
@@ -640,23 +572,9 @@
   </section>
 
   <!-- FOOTER -->
-  <section class="footer-section">
-    <div class="section-label reveal">Stay in the loop</div>
-
-    <div class="footer-grid reveal">
-      <div class="footer-cta">
-        <h3>Get notified when I make something new.</h3>
-        <p>No spam. Just the work, plus occasional behind-the-scenes on how it was made.</p>
-        <div class="footer-email-capture" id="email-form">
-          <input type="email" id="email-input" placeholder="your@email.com" required />
-          <button id="email-btn" onclick="handleSubscribe()">Subscribe &#8594;</button>
-        </div>
-        <div class="email-success" id="email-success">
-          &#10003; You&#8217;re in. I&#8217;ll be in touch.
-        </div>
-      </div>
-
-      <div class="footer-links">
+  <footer class="footer-section">
+    <div class="footer-minimal reveal">
+      <div class="footer-socials">
         <a href="https://www.instagram.com/jonathan360/" target="_blank" rel="noopener">Instagram</a>
         <a href="https://x.com/jonathan360" target="_blank" rel="noopener">Twitter / X</a>
         <a href="https://www.linkedin.com/in/nafarrete/" target="_blank" rel="noopener">LinkedIn</a>
@@ -667,9 +585,9 @@
 
     <div class="copyright">
       <span>&copy; 2026 Jonathan Nafarrete</span>
-      <span>Co-founder, Scout House &middot; <a href="mailto:hello@jonathannafarrete.com">hello@jonathannafarrete.com</a></span>
+      <span>Co-founder, Scout House</span>
     </div>
-  </section>
+  </footer>
 
   <script>
     // Rotating words
@@ -707,37 +625,6 @@
     }, { threshold: 0.1 });
 
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-    // Email subscribe (stores locally until newsletter provider is connected)
-    function handleSubscribe() {
-      const input = document.getElementById('email-input');
-      const btn = document.getElementById('email-btn');
-      const success = document.getElementById('email-success');
-      const email = input.value.trim();
-
-      if (!email || !email.includes('@')) {
-        input.style.borderColor = '#ff6b6b';
-        setTimeout(() => { input.style.borderColor = ''; }, 2000);
-        return;
-      }
-
-      btn.disabled = true;
-      btn.textContent = 'Sending...';
-
-      // For now, just show success state
-      // Replace this with your newsletter provider's API when ready
-      // e.g., Beehiiv, Substack, ConvertKit, Mailchimp
-      setTimeout(() => {
-        document.getElementById('email-form').style.display = 'none';
-        success.style.display = 'block';
-        console.log('Email signup:', email);
-      }, 800);
-    }
-
-    // Allow Enter key to submit
-    document.getElementById('email-input').addEventListener('keydown', (e) => {
-      if (e.key === 'Enter') handleSubscribe();
-    });
   </script>
 </body>
 </html>
